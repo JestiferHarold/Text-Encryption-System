@@ -97,7 +97,7 @@ class ButtonPanel(Frame):
     
     def __init__(self, parent, buttons, size = 80):
         
-        width = 15 * size
+        width = buttons * size
         super().__init__(parent, width = width, height = 40, bg = "#111114")
         
         self.buttons = []
