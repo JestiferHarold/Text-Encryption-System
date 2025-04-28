@@ -11,14 +11,14 @@ load_dotenv()
 
 database = mysql.connect(
     host = "localhost",
-    user = "root",
-    password = 
+    user = getenv("user"),
+    password = getenv("password")
     # database = "accounts"
 )
 
 cursor = database.cursor()
 
-locker = ServerLocker()
+# locker = ServerLocker()
 
 def lockFolder(folderName : str):
     relativePath = f"Accounts{sep}{folderName}"
@@ -166,7 +166,7 @@ def deleteAFile(fileName : str, folderName : str):
     if doesFileExists(folderName, fileName):
         remove(folderName + sep + fileName + ".txt")
 
-def readContentsFromAFile(folderName : str, fileName : str) -> str / bool:
+def readContentsFromAFile(folderName : str, fileName : str) ->  bool:
     try:
         with open("Accounts" + sep + folderName + sep + fileName + ".txt") as file:
             return file.read()

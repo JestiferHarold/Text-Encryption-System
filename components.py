@@ -20,7 +20,8 @@ class Window(Tk):
             this.pages[index] = page
         page.place(x = 0, y = 0)
 
-    def showPage(this, index):
+    def showPage(this, index = 1):
+        print(this.pages)
         this.pages[index].tkraise()
         this.currentPage = index
 
@@ -35,7 +36,7 @@ class Page(Frame):
     def addTitle(self, title):
         self.title = title
 
-        label = label(
+        label = Label(
             self,
             text = title,
             font = 'asd',
@@ -49,13 +50,13 @@ class Page(Frame):
         
         x = self.fieldCount * 200 + 100
         self.fieldCount += 1
-        field = tk.Frame(
+        field = Frame(
             self, 
             height = 100,
             width = 200
         )
 
-        tk.label(
+        Label(
             field,
             text = title,
             font = 'asd',
@@ -63,7 +64,7 @@ class Page(Frame):
             fg="#e14646"
         ).place(y = 0)
 
-        tk.label(
+        Label(
             field,
             text = value,
             font = "asd",
@@ -84,7 +85,7 @@ class Button(Button):
             bg = "#111114",
             fg = "#51515b",
             borderwidth = 0,
-            hightlightthickness = 0,
+            highlightthickness = 0,
             relief = "flat",
             disabledforeground = "#ffffff",
             activebackground = "#111114",
@@ -92,23 +93,23 @@ class Button(Button):
             state = state
         )
 
-class ButtonPanel(frame):
+class ButtonPanel(Frame):
     
     def __init__(self, parent, buttons, size = 80):
         
-        width = buttons * size
+        width = 15 * size
         super().__init__(parent, width = width, height = 40, bg = "#111114")
         
         self.buttons = []
         for i in range(buttons):
-            button = Button(self, text = i)
+            button = Button(self)
 
             self.buttons.append(button)
 
         x = 0
 
         for button in self.buttons:
-            button.place(height = 40, width = size, x = x)
+            button.place(height = 50, width = size, x = x)
             x += size
 
 class TextBox(Canvas):
@@ -119,4 +120,4 @@ class TextBox(Canvas):
         self.root = self.master.master
         self.master.textbox = self
 
-Window().mainloop()
+# Window().mainloop()
