@@ -1,3 +1,4 @@
+45
 from utilities import *
 from keys import *
 from components import *
@@ -113,8 +114,8 @@ def Dashboard():
     encrypingData = StringVar(value = "Enter your data")
     
     canvas = Text(
-        dash,
-        textvariable = encrypingData.get()
+        dash
+        # textvariable = encrypingData.get()
     ).place(x = 300, y = 50)
 
     button = Button(
@@ -125,12 +126,65 @@ def Dashboard():
 
 def encryptionPage():
 
+    page = Page(App)
+    page.addTitle("Here's your cypher")
+    page.place(x = 0, y = 0)
 
+    backButton = Button(page, "Back")
+    copyButton = Button(page, "Copy")
+    exportToFilebutton = Button(page, "Export to a File")
+    
+    backButton.config()
+    backButton.place(x = 100, y = 100)
 
-    return Page()
+    copyButton.config()
+    copyButton.place(x = 100, y = 120)
+
+    exportToFilebutton.config()
+    exportToFilebutton.place(x = 100, y = 140)
+
+    return page
+
 
 def decryptionPage():
-    return Page()
+    page = Page(App)
+    page.addTitle("Decryption Page")
+    page.place(x = 0, y = 0)
+
+    backButton = Button(page, "Back")
+    copyButton = Button(page, "Copy")
+    exportToFilebutton = Button(page, "Export to a File")
+    
+    backButton.config()
+    backButton.place(x = 100, y = 100)
+
+    copyButton.config()
+    copyButton.place(x = 100, y = 120)
+
+    exportToFilebutton.config()
+    exportToFilebutton.place(x = 100, y = 140)
+
+    return page
+
+def ExportToAFile():
+    page = Page(App)
+    page.addTitle("Export to a file")
+    # page.place(x = 0, y = 0)
+
+    enter = Entry(
+        page,
+        textvariable = "FileName"
+    )
+
+    enter.place(x = 100, y = 100)
+    
+    submit = Button(page)
+    submit.config(text = "Export", command = lambda : createAFile(enter.get(), "asd"))
+    submit.place(x = 150, y = 150)
+
+    return page
+
+    # var = StringVar(value = "")
 
 def deleteAccountPage():
     return Page()
@@ -140,7 +194,7 @@ App = Window()
 
 pages = (HomePage, SignUpPage, LoginInPage, ChangePasswordPage, Dashboard, encryptionPage,decryptionPage, deleteAccountPage)
 
-App.registerPage(Dashboard())
+App.registerPage(ExportToAFile())
 
 for page in pages:
     # App.registerPage(page(

@@ -154,7 +154,7 @@ def doesFileExists(folderName : str, fileName : str):
 
 def createAFile(fileName : str, folderName : str):
      if not doesFileExists(folderName, fileName):
-        with open("Accounts" + sep + fileName + ".txt") as file:
+        with open("Accounts" + sep + folderName + sep + fileName + ".txt", "w+") as file:
             pass
     
 def createAFileWithContents(fileName : str, folderName : str, contents : str):

@@ -211,6 +211,8 @@ def special(s: str) -> str:
         return '412'
     elif s == '?':
         return '904'
+    elif s == '\r':
+        return '267'
     else:
         return '785'
 
@@ -409,6 +411,8 @@ def fun(i: str) -> str:
         return '?'
     elif i == '998':
         return ' '
+    elif i == "267":
+        return '\r'
     else:
         return ' '  
     
@@ -421,7 +425,7 @@ def decrypt(content : str) -> str:
 
     return text
 
-def texties(filedata: str) -> str:
+def encrypt(filedata: str) -> str:
     
     '''This function is used for encrypting data'''
     
