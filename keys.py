@@ -223,6 +223,7 @@ def fun(i: str) -> str:
     # Uppercase alphabet 
     if i == '123':
         return 'A'
+    #I'm such a fucking clown, writing all this stupid shit 4 in the morning just to impress a girl, jesus. 
     elif i == '141':
         return 'B'
     elif i == '124':
