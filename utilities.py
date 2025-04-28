@@ -1,15 +1,18 @@
 import mysql.connector as mysql
-from os import sep, path, listdir, remove, mkdir, system
+from os import sep, path, listdir, remove, mkdir, system, getenv
 from shutil import rmtree
+from dotenv import load_dotenv
 # from base64 import 
 # from pylocker import ServerLocker
 
 #02121956
 
+load_dotenv()
+
 database = mysql.connect(
     host = "localhost",
     user = "root",
-    password = "2012"
+    password = 
     # database = "accounts"
 )
 

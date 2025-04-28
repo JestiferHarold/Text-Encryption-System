@@ -25,6 +25,98 @@ class Window(Tk):
         this.currentPage = index
 
 class Page(Frame):
-    pass
+    
+    def __init__(self, parent):
+
+        super().__init__(parent, width = "1200", height = "900")
+        self.fieldCount = 0
+        self.textbox = None
+
+    def addTitle(self, title):
+        self.title = title
+
+        label = label(
+            self,
+            text = title,
+            font = 'asd',
+            bg = "#1a1a1f",
+            fg = "#e14646"      
+        )
+
+        label.place(relx = 0.5, y = 50, anchor = "center")
+
+    def addField(self, title, value):
+        
+        x = self.fieldCount * 200 + 100
+        self.fieldCount += 1
+        field = tk.Frame(
+            self, 
+            height = 100,
+            width = 200
+        )
+
+        tk.label(
+            field,
+            text = title,
+            font = 'asd',
+            bg="#1a1a1f",
+            fg="#e14646"
+        ).place(y = 0)
+
+        tk.label(
+            field,
+            text = value,
+            font = "asd",
+            bg="#1a1a1f",
+            fg="#e14646"
+        ).place(y = 35)
+
+        field.place(x = x, y = 150)
+
+class Button(Button):
+
+    def __init__(self, parent, text = "", state = "normal"):
+        
+        super().__init__(
+            parent,
+            text = text,
+            font = "asdad",
+            bg = "#111114",
+            fg = "#51515b",
+            borderwidth = 0,
+            hightlightthickness = 0,
+            relief = "flat",
+            disabledforeground = "#ffffff",
+            activebackground = "#111114",
+            activeforeground = "#a1a1ab",
+            state = state
+        )
+
+class ButtonPanel(frame):
+    
+    def __init__(self, parent, buttons, size = 80):
+        
+        width = buttons * size
+        super().__init__(parent, width = width, height = 40, bg = "#111114")
+        
+        self.buttons = []
+        for i in range(buttons):
+            button = Button(self, text = i)
+
+            self.buttons.append(button)
+
+        x = 0
+
+        for button in self.buttons:
+            button.place(height = 40, width = size, x = x)
+            x += size
+
+class TextBox(Canvas):
+    def __init__(self, frame):
+
+        super().__init__(frame, height = 300, width = 900)
+        self.place(relx = 0.5, y = 400, anchor = "center")
+        self.root = self.master.master
+        self.master.textbox = self
 
 Window().mainloop()
