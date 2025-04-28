@@ -412,3 +412,30 @@ def fun(i: str) -> str:
     else:
         return ' '  
     
+def decrypt(content : str) -> str:
+    
+    text = str()
+    for i in range(0, len(content), 3):
+        ele = content[i:i+3]
+        text += fun(ele)
+
+    return text
+
+def texties(filedata: str) -> str:
+    
+    '''This function is used for encrypting data'''
+    
+    encrypted_text = str()
+
+    for i in filedata:
+        if i.isalpha():
+            code = bets1(i) if i.isupper() else bets2(i)
+        elif i.isdigit():
+            code = git(i)
+        elif i.isspace():
+            code = space(i)
+        else:
+            code = special(i)
+        encrypted_text += code
+  
+    return encrypted_text
