@@ -1,7 +1,8 @@
-45
 from utilities import *
 from keys import *
 from components import *
+from dotenv import load_dotenv
+
 
 def HomePage():
     
@@ -189,6 +190,10 @@ def ExportToAFile():
 def deleteAccountPage():
     return Page()
 
+
+load_dotenv()
+
+back = Database(getenv("username"), getenv("password"))
 
 App = Window()
 
