@@ -15,16 +15,17 @@ class Database:
 
         self.cursor = self.database.cursor()
 
+        self.cursor.execute("use accounts")
 
-    def lockFolder(self, folderName : str):
-        absolutePath = path.abspath(f"Accounts{sep}{folderName}")
-        cmd = f'icacls "{absolutePath}{sep}asdasd.txt" /deny Everyone:(F)'
+    def lockFile(self, folderName : str, fileName : str):
+        absolutePath = path.abspath(f"Accounts{sep}{folderName}{sep}{fileName}")
+        cmd = f'icacls "{absolutePath}" /deny Everyone:(F)'
         system(cmd)
 
     # lockFolder("asd")
 
-    def unlockFolder(self, folderName : str):
-        relativePath = f"Accounts{sep}{folderName}"
+    def unlockFile(self, folderName : str, fileName : str):
+        relativePath = f"Accounts{sep}{folderName}{fileName}"
         cmd = f'icacls "{relativePath}" /grant Everyone:(F)'
         system(cmd)
 
@@ -67,7 +68,7 @@ class Database:
             return False
         return True
 
-    def checkIfUserExists(self) -> bool:
+    def checkIfUsersExists(self) -> bool:
         # cursor.fetchall()
         self.cursor.execute("select * from accounts")
         for x in self.fetch():
@@ -132,11 +133,11 @@ class Database:
     def checkAllAccounts(self):
         self.fetch()
         self.cursor.execute("select * from accounts")
-        accounts = self.fetch()
-        for x in accounts:
-            self.createANewAcount(x)
+        # accounts = self.fetch()
+        for x in self.cursor:
+            self.createANewAcount(x[0])
     
-    def createANewAccount(self ,folderName : str):
+    def createANewAccount(self, folderName : str):
         if not path.exists("Accounts" + sep + folderName):
             mkdir("Accounts" + sep + folderName)
 
@@ -144,9 +145,10 @@ class Database:
         if path.exists("Accounts" + sep + folderName):
             rmtree("Accounts" + sep + folderName)
 
-    def listAllFiles(self, foldername : str):
+    def listAllFiles(self, folderName : str):
         if path.exists("Accounts" + sep + folderName):
-            listdir("Accounts" + sep + folderName)
+            return listdir("Accounts" + sep + folderName)
+        return list()
 
     def doesFileExists(self, folderName : str, fileName : str):
         if fileName + ".txt" in listdir("Accounts" + sep + folderName):
@@ -178,5 +180,18 @@ class Database:
         self.fetch()
         mysqlQuery = f"select * from accounts"
         self.cursor.execute(mysqlQuery)
-        for x in cursor:
-            self.lockFolder(x[0])
+        for username in self.cursor:
+            files =  self.listAllFiles(username[0])
+            for file in files:
+                self.lockFile(file)
+
+    def unlockAllFiles(self):
+        self.fetch()
+        mysqlQuery = f"select * from accounts"
+        self.cursor.execute(mysqlQuery)
+        for username in self.cursor:
+            files =  self.listAllFiles(username[0])
+            print(files)
+            for file in files:
+                self.unlockFile(file)
+            

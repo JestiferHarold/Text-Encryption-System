@@ -132,7 +132,14 @@ class EntryBox(Text):
 
         super().__init__(
             frame,
-            # textvariable = textVariable,
+            bg = "#111114",
+            fg = "#51515b",
+            borderwidth = 0,
+            highlightthickness = 0,
+            relief = "flat",
+            # disabledforeground = "#ffffff",
+            # activebackground = "#111114",
+            # activeforeground = "#a1a1ab",
             state = state,
             font = FONT_SMALL   
         )
