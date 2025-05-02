@@ -1,5 +1,11 @@
 from tkinter import *
 
+FONT_LARGE = ("Century Gothic", 35)
+FONT_SMALL = ("Century Gothic", 18)
+FONT_TOOLTIP = ("Century Gothic", 10)
+FONT_BUTTON = ("Century Gothic", 12)
+FONT_TEXT = ("Lucida Console", 23)
+
 class Window(Tk):
 
     def __init__(this):
@@ -39,12 +45,12 @@ class Page(Frame):
         label = Label(
             self,
             text = title,
-            font = 'asd',
+            font = FONT_LARGE,
             bg = "#1a1a1f",
             fg = "#e14646"      
         )
 
-        label.place(relx = 0.5, y = 50, anchor = "center")
+        label.place(relx = 0.5, y = 60, anchor = "center")
 
     def addField(self, title, value):
         
@@ -76,7 +82,7 @@ class Page(Frame):
 
 class Button(Button):
 
-    def __init__(self, parent, text = "", state = "normal"):
+    def __init__(self, parent, text = "", state = "normal" ):
         
         super().__init__(
             parent,
@@ -95,10 +101,10 @@ class Button(Button):
 
 class ButtonPanel(Frame):
     
-    def __init__(self, parent, buttons, size = 80):
+    def __init__(self, parent, buttons, size = 100):
         
         width = buttons * size
-        super().__init__(parent, width = width, height = 40, bg = "#111114")
+        super().__init__(parent, width = width , height = 40, bg = "#111114")
         
         self.buttons = []
         for i in range(buttons):
@@ -109,7 +115,7 @@ class ButtonPanel(Frame):
         x = 0
 
         for button in self.buttons:
-            button.place(height = 50, width = size, x = x)
+            button.place(height = 40, width = 100, x = x)
             x += size
 
 class TextBox(Canvas):
@@ -120,4 +126,30 @@ class TextBox(Canvas):
         self.root = self.master.master
         self.master.textbox = self
 
+class EntryBox(Text):
+
+    def __init__(self, frame, textVariable = "", state = "normal"):
+
+        super().__init__(
+            frame,
+            # textvariable = textVariable,
+            state = state,
+            font = FONT_SMALL   
+        )
+
+
+class Text(Label):
+    def __init__(self, master, text = "", state = "normal"):
+
+        super().__init__(
+            master, 
+            text = text,
+            font = FONT_TEXT,
+            # bg = "#111114",
+            fg = "#51515b",
+            state = state
+        )
+
+    def bob(self):
+        pass
 # Window().mainloop()

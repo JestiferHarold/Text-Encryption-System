@@ -180,10 +180,3 @@ class Database:
         self.cursor.execute(mysqlQuery)
         for x in cursor:
             self.lockFolder(x[0])
-
-# cursor.execute("use accounts")
-# cursor.execute/("select * from accounts")
-# lockAllFolders()
-
-# for x in cursor:/
-    # print(x)

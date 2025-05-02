@@ -7,16 +7,21 @@ from dotenv import load_dotenv
 def HomePage():
     
     page = Page(App)
-    page.addTitle("This is kinda gay")
-
+    page.addTitle("Text Encryption System")
+    # page.title()
+    print(App.winfo_width())
     buttonPanel = ButtonPanel(page, 2)
-    buttonPanel.place(relx = 0.5, y = 15, anchor = "center")
+    buttonPanel.place(relx = 0.5, y = 150, anchor = "center")
+
 
     button = buttonPanel.buttons[0]
     button.config(text = "Sign Up", command = SignUpPage)
 
     button = buttonPanel.buttons[1]
-    button.config(text = "Login ", command = App.showPage())
+    button.config(text = "Login", command = lambda : X)
+    
+    mainText = Text(page, text = "This is what we are fighting for")
+    mainText.place(relx = 0.5, y = 300, anchor = "center")
     return page
 
 def SignUpPage():
@@ -25,31 +30,38 @@ def SignUpPage():
 
     TextBoxFor = Canvas(
         sup,
-        height = 50,
-        width = 100
-    ).place(relx = 0, y = 0 )
+        height = 200,
+        width = 400,
+        bg="#ffffff"
+    )
+
+    TextBoxFor.place(relx = 0.5, y = 410, anchor = "center")
 
     userName = StringVar(value = "UserName")
     Email = StringVar(value = "Email")
     Password = StringVar(value = "Password")
 
-    userNameEntry = Entry(
+    userNameEntry = EntryBox(
         TextBoxFor,
-        textvariable = userName
-    ).place(x = 10 , y = 100)
+        # textvariable = userName
+        userName
+    )
+    userNameEntry.place(relx = 0.5 , y = 100)
 
-    EmailEntry = Entry(
+    EmailEntry = EntryBox(
         TextBoxFor,
-        textvariable = Email
-    ).place(x = 10, y = 50)
+        Email
+        # textvariable = Email
+    ).place(relx = 0.5, y = 50)
 
-    PasswordEntry = Entry(
+    PasswordEntry = EntryBox(
         TextBoxFor,
-        textvariable = Password
-    ).place(x = 10, y = 10)
+        # textvariable = Password
+        Password
+    ).place(x = 0, y = 150)
 
     button = Button(TextBoxFor, "Submit")
-    button.command = print(userName.get(), Email.get(), Password.get())
+    button.command = lambda : print(userName.get(), Email.get(), Password.get())
     button.place(x = 200, y = 10)
 
     # EmailTextBox = Canvas(
@@ -106,64 +118,83 @@ def Dashboard():
     dash = Page(App)
     dash.addTitle("DashBoard")
 
-    buttonp = ButtonPanel(dash, 3)
-    buttonp.place(x = 100, y = 0)
+    buttonpanel = ButtonPanel(dash, 5)
+    buttonpanel.place(relx = 0.5, y = 150, anchor = "center")
 
-    button = buttonp.buttons[0]
-    button.config(text = "assd")
+    for index, work in enumerate((("Encrpyt"), ("Decrypt"), ("HOME"), ("Settings"), ("Log Out"))):
+        buttonpanel.buttons[index].config(text = work)
+    
+
 
     encrypingData = StringVar(value = "Enter your data")
     
-    canvas = Text(
-        dash
-        # textvariable = encrypingData.get()
-    ).place(x = 300, y = 50)
+    # canvas = Text(
+    #     dash
+    #     # textvariable = encrypingData.get()
+    # ).place(x = 300, y = 50)
 
-    button = Button(
-        dash
-    ).place(x = 10, y = 10)
+    # button = Button(
+    #     dash
+    # ).place(x = 10, y = 10)
     
+    Box = Canvas(dash)
+    
+
     return dash
 
 def encryptionPage():
 
     page = Page(App)
-    page.addTitle("Here's your cypher")
+    page.addTitle("Encryption")
     page.place(x = 0, y = 0)
 
-    backButton = Button(page, "Back")
-    copyButton = Button(page, "Copy")
-    exportToFilebutton = Button(page, "Export to a File")
-    
-    backButton.config()
-    backButton.place(x = 100, y = 100)
+    TypeBox = EntryBox(
+        page
+    )
 
-    copyButton.config()
-    copyButton.place(x = 100, y = 120)
+    TypeBox.config(
+        width = 80,
+        height = 15,
+        borderwidth = 0
+    )
 
-    exportToFilebutton.config()
-    exportToFilebutton.place(x = 100, y = 140)
+    TypeBox.place(relx = 0.5, y = 300, anchor = "center")
+    TextBox.focus_set()
+
+    encryptButton = Button(page, text = "Encrypt")
+    # encryptButton.config(width = 200)
+    encryptButton.place(x = 1065, y = 520)
+
+    backButton = Button(page, text = "Back")
+    backButton.place(x = 77, y = 520)
 
     return page
 
 
 def decryptionPage():
     page = Page(App)
-    page.addTitle("Decryption Page")
+    page.addTitle("Decryption")
     page.place(x = 0, y = 0)
 
-    backButton = Button(page, "Back")
-    copyButton = Button(page, "Copy")
-    exportToFilebutton = Button(page, "Export to a File")
-    
-    backButton.config()
-    backButton.place(x = 100, y = 100)
+    TypeBox = EntryBox(
+        page
+    )
 
-    copyButton.config()
-    copyButton.place(x = 100, y = 120)
+    TypeBox.config(
+        width = 80,
+        height = 15,
+        borderwidth = 0
+    )
 
-    exportToFilebutton.config()
-    exportToFilebutton.place(x = 100, y = 140)
+    TypeBox.place(relx = 0.5, y = 300, anchor = "center")
+    TypeBox.focus_set()
+
+    encryptButton = Button(page, text = "Decrypt")
+    # encryptButton.config(width = 200)
+    encryptButton.place(x = 1065, y = 520)
+
+    backButton = Button(page, text = "Back")
+    backButton.place(x = 77, y = 520)
 
     return page
 
@@ -172,16 +203,63 @@ def ExportToAFile():
     page.addTitle("Export to a file")
     # page.place(x = 0, y = 0)
 
-    enter = Entry(
+    # backButton = Button(page, "Back")
+    # copyButton = Button(page, "Copy")
+    # exportToFilebutton = Button(page, "Export to a File")
+    
+    # backButton.config()
+    # backButton.place(x = 100, y = 100)
+# 
+    # copyButton.config()
+    # copyButton.place(x = 100, y = 120)
+
+    # exportToFilebutton.config()
+    # exportToFilebutton.place(x = 100, y = 140)
+
+
+    # TypeBox = Canvas(
+    #     page
+    #     # state = "disabled",
+    # )
+
+    buttonPanel = ButtonPanel(
         page,
-        textvariable = "FileName"
+        4,
+        size = 110
     )
 
-    enter.place(x = 100, y = 100)
+    buttonPanel.place(relx = 0.5, y = 450, anchor = "center")
+
+    for index, work in enumerate((("Back"), ("HOME"), ("Copy"), ("Export To File"))):
+        buttonPanel.buttons[index].config(text = work)
+
+    text = Label(
+        page,
+        font = FONT_SMALL,
+        bg = "#1a1a1f",
+        fg = "#e14646",
+        text = "asd asd asd ads asd a"
+    )
     
-    submit = Button(page)
-    submit.config(text = "Export", command = lambda : createAFile(enter.get(), "asd"))
-    submit.place(x = 150, y = 150)
+    text.config(
+        width = 80,
+        height = 15,
+        
+        
+        # borderwidth = 1
+    )
+
+    
+
+    # text.place(relx = 0.5, y = 300, anchor = "center")
+
+    # TextBox.insert("insert", "fuck you \n asda sdd fasd")
+
+
+    
+    # submit = Button(page)
+    # submit.config(text = "Export", command = lambda : back.createAFile(enter.get(), "asd"))
+    # submit.place(x = 150, y = 150)
 
     return page
 
@@ -193,7 +271,7 @@ def deleteAccountPage():
 
 load_dotenv()
 
-back = Database(getenv("username"), getenv("password"))
+# back = Database(getenv("username"), getenv("password"))
 
 App = Window()
 
