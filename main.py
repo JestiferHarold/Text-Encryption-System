@@ -17,8 +17,13 @@ def HomePage():
     button = buttonPanel.buttons[1]
     button.config(text = "Login", command = lambda : App.showPage(2))
     
-    mainText = Text(page, text = "This message is confiendtial")
+    mainText = Text(page, text = "Confiendtial")
     mainText.place(relx = 0.5, y = 300, anchor = "center")
+
+    # label = Canvas(page)
+    # label.place(x = 555, y = 500)
+    # labelslider = TypingLabel(page, ["Confidential", encrypt("Confidential")])
+    # labelslider.animate()
 
     return page
 
@@ -28,36 +33,42 @@ def SignUpPage():
 
     TextBoxFor = Canvas(
         sup,
-        height = 200,
+        height = 300,
         width = 400,
-        bg="#ffffff"
+        borderwidth = 0
+        # bg="#ffffff"
     )
 
-    TextBoxFor.place(relx = 0.5, y = 410, anchor = "center")
+    TextBoxFor.place(relx = 0.5, y = 300, anchor = "center")
+    # TextBoxFor.focus_set()
 
     userName = StringVar(value = "UserName")
     Email = StringVar(value = "Email")
     Password = StringVar(value = "Password")
 
-    userNameEntry = EntryBox(
+    userNameEntry = InputBox(
         TextBoxFor,
         userName
     )
-    userNameEntry.place(relx = 0.5 , y = 100)
+    userNameEntry.place(relx = 0.5 , y = 100, anchor = "center")
 
-    EmailEntry = EntryBox(
+    userNameEntry.focus_set()
+
+    EmailEntry = InputBox(
         TextBoxFor,
         Email
-    ).place(relx = 0.5, y = 50)
+    )
+    EmailEntry.place(relx = 0.5, y = 150, anchor = "center")
 
-    PasswordEntry = EntryBox(
+    PasswordEntry = InputBox(
         TextBoxFor,
         Password
-    ).place(x = 0, y = 150)
+    )
+    PasswordEntry.place(relx = 0.5, y = 200, anchor = "center")
 
     button = Button(TextBoxFor, "Submit")
     button.command = lambda : back.addUser(userName.get(), email.get(), Password.get())
-    button.place(x = 200, y = 10)
+    button.place(relx = 0.5, y = 250, anchor = "center")
 
     return sup
 

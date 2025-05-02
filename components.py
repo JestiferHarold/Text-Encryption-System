@@ -159,4 +159,16 @@ class Text(Label):
 
     def bob(self):
         pass
-# Window().mainloop()
+
+class InputBox(Entry):
+
+    def __init__(self, frame, text = "", height = 20):
+        super().__init__(frame, textvariable = text, width = 30, borderwidth = 0.1, foreground = "#e14646", font = ("Century Gothic", 12))
+
+
+class TypingLabel:
+    def __init__(self, label):
+        self.encrypted = label.get()
+
+    def animate(self):
+        pass
