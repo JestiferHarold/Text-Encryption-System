@@ -3,13 +3,10 @@ from keys import *
 from components import *
 from dotenv import load_dotenv
 
-
 def HomePage():
     
     page = Page(App)
     page.addTitle("Text Encryption System")
-    # page.title()
-    print(App.winfo_width())
     buttonPanel = ButtonPanel(page, 2)
     buttonPanel.place(relx = 0.5, y = 150, anchor = "center")
 
@@ -43,7 +40,6 @@ def SignUpPage():
 
     userNameEntry = EntryBox(
         TextBoxFor,
-        # textvariable = userName
         userName
     )
     userNameEntry.place(relx = 0.5 , y = 100)
@@ -51,34 +47,16 @@ def SignUpPage():
     EmailEntry = EntryBox(
         TextBoxFor,
         Email
-        # textvariable = Email
     ).place(relx = 0.5, y = 50)
 
     PasswordEntry = EntryBox(
         TextBoxFor,
-        # textvariable = Password
         Password
     ).place(x = 0, y = 150)
 
     button = Button(TextBoxFor, "Submit")
     button.command = lambda : print(userName.get(), Email.get(), Password.get())
     button.place(x = 200, y = 10)
-
-    # EmailTextBox = Canvas(
-    #     sup,
-    #     height = 50,
-    #     width = 100
-    #     # ANCHOR = "center"       
-    # )
-
-    # passwordTextBox = Canvas(
-    #     sup,
-    #     height = 50,
-    #     width = 100,
-    #     ANCHOR = "center"       
-    # )    
-
-    # addUser()
 
     return sup
 
@@ -123,19 +101,8 @@ def Dashboard():
 
     for index, work in enumerate((("Encrpyt"), ("Decrypt"), ("HOME"), ("Settings"), ("Log Out"))):
         buttonpanel.buttons[index].config(text = work)
-    
-
 
     encrypingData = StringVar(value = "Enter your data")
-    
-    # canvas = Text(
-    #     dash
-    #     # textvariable = encrypingData.get()
-    # ).place(x = 300, y = 50)
-
-    # button = Button(
-    #     dash
-    # ).place(x = 10, y = 10)
     
     Box = Canvas(dash)
     
@@ -201,26 +168,6 @@ def decryptionPage():
 def ExportToAFile():
     page = Page(App)
     page.addTitle("Export to a file")
-    # page.place(x = 0, y = 0)
-
-    # backButton = Button(page, "Back")
-    # copyButton = Button(page, "Copy")
-    # exportToFilebutton = Button(page, "Export to a File")
-    
-    # backButton.config()
-    # backButton.place(x = 100, y = 100)
-# 
-    # copyButton.config()
-    # copyButton.place(x = 100, y = 120)
-
-    # exportToFilebutton.config()
-    # exportToFilebutton.place(x = 100, y = 140)
-
-
-    # TypeBox = Canvas(
-    #     page
-    #     # state = "disabled",
-    # )
 
     buttonPanel = ButtonPanel(
         page,
@@ -233,37 +180,7 @@ def ExportToAFile():
     for index, work in enumerate((("Back"), ("HOME"), ("Copy"), ("Export To File"))):
         buttonPanel.buttons[index].config(text = work)
 
-    text = Label(
-        page,
-        font = FONT_SMALL,
-        bg = "#1a1a1f",
-        fg = "#e14646",
-        text = "asd asd asd ads asd a"
-    )
-    
-    text.config(
-        width = 80,
-        height = 15,
-        
-        
-        # borderwidth = 1
-    )
-
-    
-
-    # text.place(relx = 0.5, y = 300, anchor = "center")
-
-    # TextBox.insert("insert", "fuck you \n asda sdd fasd")
-
-
-    
-    # submit = Button(page)
-    # submit.config(text = "Export", command = lambda : back.createAFile(enter.get(), "asd"))
-    # submit.place(x = 150, y = 150)
-
     return page
-
-    # var = StringVar(value = "")
 
 def deleteAccountPage():
     return Page()
@@ -283,4 +200,3 @@ for page in pages:
     # App.registerPage(page(
     pass
 App.mainloop()
-# Window().mainloop()
